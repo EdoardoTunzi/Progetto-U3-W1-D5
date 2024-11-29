@@ -1,0 +1,7 @@
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 180px;
+}
+/*Personalmente avrei lasciato le locandinde originali ricevute dall'API, ma per rispettare il mock-up fornito ho aggiunto questa modifica in css*/

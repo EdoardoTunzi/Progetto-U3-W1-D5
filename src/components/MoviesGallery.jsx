@@ -7,14 +7,14 @@ class MovieGallery extends Component {
   };
 
   getMovies = async () => {
-    fetch(`http://www.omdbapi.com/?apikey=286931b4&s=${this.props.search}`)
+    fetch(`http://www.omdbapi.com/?apikey=286931b4&s=${this.props.searchQuery}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
         }
       })
       .then((movies) => {
-        console.log(movies);
+        //console.log(movies);
         this.setState({ movies: movies.Search });
       })
       .catch((error) => {
@@ -27,8 +27,6 @@ class MovieGallery extends Component {
   }
 
   render() {
-    console.log("questo è gallery one alla fine del fetch ", this.state.movies);
-
     return (
       <Container fluid className="mb-4">
         <h5>{this.props.name}</h5>
@@ -36,7 +34,7 @@ class MovieGallery extends Component {
           {this.state.movies.map((movie) => {
             return (
               <div key={movie.imdbID} className="col-6 col-sm-4 col-md-2">
-                <img className="img-fluid object-content-fit" src={movie.Poster} alt={movie.Title} />
+                <img className="img-fluid movie-poster" src={movie.Poster} alt={movie.Title} />
               </div>
             );
           })}
