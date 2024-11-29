@@ -4,7 +4,6 @@ import MyNavbar from "./components/MyNavbar";
 import ActionBar from "./components/ActionBar";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
-import MovieGallery from "./components/MoviesGallery";
 import { Container } from "react-bootstrap";
 
 function App() {
@@ -13,9 +12,7 @@ function App() {
       <Container fluid className="bg-dark text-light min-vh-100">
         <MyNavbar />
         <ActionBar />
-        <Main>
-          <MovieGallery />
-        </Main>
+        <Main />
         <Footer />
       </Container>
     </>
