@@ -1,22 +1,46 @@
 import { Component } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 
 class MovieGallery extends Component {
+  state = {
+    movies: []
+  };
+
+  getMovies = async () => {
+    fetch(`http://www.omdbapi.com/?apikey=286931b4&s=${this.props.search}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then((movies) => {
+        console.log(movies);
+        this.setState({ movies: movies.Search });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  componentDidMount() {
+    this.getMovies();
+  }
+
   render() {
-    console.log(this.props);
+    console.log("questo è gallery one alla fine del fetch ", this.state.movies);
 
     return (
-      <Container className="container-fluid mb-4">
+      <Container fluid className="mb-4">
         <h5>{this.props.name}</h5>
-        <div className="row g-1">
-          {this.props.genre.map((movie) => {
+        <Row className="g-2">
+          {this.state.movies.map((movie) => {
             return (
               <div key={movie.imdbID} className="col-6 col-sm-4 col-md-2">
-                <img className="img-fluid" src={movie.Poster} alt={movie.Title} />
+                <img className="img-fluid object-content-fit" src={movie.Poster} alt={movie.Title} />
               </div>
             );
           })}
-        </div>
+        </Row>
       </Container>
     );
   }
