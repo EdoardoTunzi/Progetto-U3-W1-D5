@@ -1,10 +1,12 @@
 import { Component } from "react";
-import { Container, Row, Spinner } from "react-bootstrap";
+import { Alert, Container, Row, Spinner } from "react-bootstrap";
 
 class MovieGallery extends Component {
   state = {
     movies: [],
-    isLoading: false
+    isLoading: false,
+    hasError: false,
+    errorMessage: ""
   };
 
   getMovies = async () => {
@@ -24,6 +26,7 @@ class MovieGallery extends Component {
       })
       .catch((error) => {
         console.log(error);
+        this.setState({ hasError: true, errorMessage: error.message });
       })
       .finally(() => {
         this.setState({ isLoading: false });
@@ -44,6 +47,7 @@ class MovieGallery extends Component {
           </Spinner>
         )}
         <Row className="g-2">
+          {this.state.hasError && <Alert variant="danger">{this.state.errorMessage ? this.state.errorMessage : "Error in getting data"}</Alert>}
           {this.state.movies.map((movie) => {
             return (
               <div key={movie.imdbID} className="col-6 col-sm-4 col-md-2">
