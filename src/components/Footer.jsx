@@ -12,7 +12,7 @@ const Footer = () => {
           <Youtube size={30} className="text-secondary" />
         </Col>
       </Row>
-      <Row className="row-cols-1 row-cols-sm-2 row-cols-md-4 text-start p-4">
+      <Row className="row-cols-1 row-cols-sm-2 row-cols-md-4 text-start">
         <Col className="mb-3 ">
           <p>
             <a href="#" className="text-secondary text-decoration-none">
