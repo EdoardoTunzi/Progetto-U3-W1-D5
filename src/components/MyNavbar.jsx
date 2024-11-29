@@ -28,10 +28,10 @@ const MyNavbar = () => {
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="me-auto d-none d-md-flex">
             <Nav.Link href="#">Home</Nav.Link>
+            <Nav.Link href="#">TV Shows</Nav.Link>
             <Nav.Link href="#" className="active">
-              TV Shows
+              Movies
             </Nav.Link>
-            <Nav.Link href="#">Movies</Nav.Link>
             <Nav.Link href="#">Recently Added</Nav.Link>
             <Nav.Link href="#">My List</Nav.Link>
           </Nav>
@@ -48,8 +48,8 @@ const MyNavbar = () => {
 
             {/* Avatar Dropdown */}
             <Dropdown align="end">
-              <Dropdown.Toggle variant="link" className="text-decoration-none p-0">
-                <Image src="../public/assets/img/avatar.png" height="30" alt="Avatar" />
+              <Dropdown.Toggle variant="link" className="text-decoration-none text-white p-0">
+                <Image src="../public/assets/img/avatar.png" height="30" alt="Avatar image" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="./profile.html">Profile</Dropdown.Item>
