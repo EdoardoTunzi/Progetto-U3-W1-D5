@@ -1,16 +1,21 @@
 import { Component } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Spinner } from "react-bootstrap";
 
 class MovieGallery extends Component {
   state = {
-    movies: []
+    movies: [],
+    isLoading: false
   };
 
   getMovies = async () => {
+    this.setState({ isLoading: true });
+
     fetch(`http://www.omdbapi.com/?apikey=286931b4&s=${this.props.searchQuery}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
+        } else {
+          throw new Error("Error in fetching data from API");
         }
       })
       .then((movies) => {
@@ -19,6 +24,9 @@ class MovieGallery extends Component {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
       });
   };
 
@@ -30,6 +38,11 @@ class MovieGallery extends Component {
     return (
       <Container fluid className="mb-4">
         <h5>{this.props.name}</h5>
+        {this.state.isLoading && (
+          <Spinner animation="border" role="status" variant="danger" className="d-block mx-auto my-3">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
         <Row className="g-2">
           {this.state.movies.map((movie) => {
             return (
